@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Menú Paciente
+  </title>
+  <link href="../css/paciente.css" rel="stylesheet"/>
+   <!-- Ayuda de uso: botón (?) y guía específica de esta pantalla. -->
+  <link href="../css/ayuda.css" rel="stylesheet"/>
+  <script src="../js/ayuda.js" data-ayuda-pagina="html/menu_paciente.html" defer></script>
+</head>
+ <body>
+  <div class="menu">
+   <button class="menu-item" onclick="window.parent.frames['contenido'].location.href='../paciente/principal3.html'">
+    🏠 Inicio
+   </button>
+   <button class="menu-item" onclick="window.parent.frames['contenido'].location.href='../paciente/sacar_turno.html'">
+    📅 Sacar turno
+   </button>
+   <button class="menu-item" onclick="window.parent.frames['contenido'].location.href='../paciente/mis_turnos.html'">
+    📋 Mis turnos
+   </button>
+   <button class="menu-item" onclick="window.parent.frames['contenido'].location.href='../paciente/mis_atenciones.html'">
+    🩺 Mis atenciones
+   </button>
+   <button class="menu-item" onclick="window.parent.frames['contenido'].location.href='../paciente/mis_datos.html'">
+    👤 Mis datos
+   </button>
+   <div class="separador">
+   </div>
+   <button class="btn-volver" onclick="window.top.location.href='inicio_sesion.html'">
+    🚪 Cerrar sesión
+   </button>
+  </div>
+ </body>
+</html>

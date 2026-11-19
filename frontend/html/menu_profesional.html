@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Menú Profesional
+  </title>
+  <link href="../css/paciente.css" rel="stylesheet"/>
+   <!-- Ayuda de uso: botón (?) y guía específica de esta pantalla. -->
+  <link href="../css/ayuda.css" rel="stylesheet"/>
+  <script src="../js/ayuda.js" data-ayuda-pagina="html/menu_profesional.html" defer></script>
+</head>
+ <body>
+  <nav aria-label="Menú profesional" class="menu">
+   <button class="menu-item" onclick="window.parent.frames['contenido'].location.href='../profesional/principal2.html'">
+    🏠 Inicio
+   </button>
+   <button class="menu-item" onclick="window.parent.frames['contenido'].location.href='../profesional/asistencia.html'">
+    📋 Turnos de pacientes
+   </button>
+   <button class="menu-item" onclick="window.parent.frames['contenido'].location.href='../profesional/horarios.html'">
+    🕐 Horarios
+   </button>
+   <div class="separador">
+   </div>
+   <button class="btn-volver" onclick="window.top.location.href='inicio_sesion.html'">
+    🚪 Cerrar sesión
+   </button>
+  </nav>
+ </body>
+</html>

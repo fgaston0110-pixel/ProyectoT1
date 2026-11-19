@@ -1,0 +1,60 @@
+/* Botón flotante de ayuda, visible en las pantallas de paciente y profesional. */
+.ayuda-boton {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    z-index: 9990;
+    width: 52px;
+    height: 52px;
+    border: 2px solid #bfdbfe;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    font: bold 27px/1 Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 5px 18px #0006;
+}
+.ayuda-boton:hover, .ayuda-boton:focus-visible { background: #1d4ed8; outline-offset: 3px; }
+.ayuda-fondo[hidden] { display: none !important; }
+.ayuda-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 9991;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: #0009;
+}
+.ayuda-panel {
+    position: relative;
+    width: min(520px, 100%);
+    max-height: min(80vh, 700px);
+    overflow: auto;
+    padding: 25px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 1px solid #60a5fa;
+    background: #17263d;
+    color: #f1f5f9;
+    box-shadow: 0 10px 35px #0007;
+    font: 16px/1.55 Arial, sans-serif;
+}
+.ayuda-panel h2 { margin: 0 35px 10px 0; color: #93c5fd; font-size: 23px; }
+.ayuda-panel p { margin: 0 0 12px; color: #e2e8f0; }
+.ayuda-panel ol { padding-left: 24px; margin: 12px 0 0; }
+.ayuda-panel li { margin: 9px 0; }
+.ayuda-cerrar {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: 0;
+    border-radius: 8px;
+    background: #334155;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+}
+@media(max-width: 480px) { .ayuda-boton { bottom: 12px; right: 12px; } .ayuda-panel { padding: 19px; } }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Inicio Profesional
+  </title>
+  <link href="../css/paciente.css" rel="stylesheet"/>
+   <!-- Ayuda de uso: botón (?) y guía específica de esta pantalla. -->
+  <link href="../css/ayuda.css" rel="stylesheet"/>
+  <script src="../js/ayuda.js" data-ayuda-pagina="profesional/principal2.html" defer></script>
+</head>
+ <body>
+  <main class="principal">
+   <section class="bienvenida">
+    <h2 id="tituloBienvenida">
+     ¡Bienvenido!
+    </h2>
+    <p>
+     Desde aquí podés consultar los turnos reservados por tus pacientes
+                y acceder a las secciones de horarios.
+    </p>
+   </section>
+   <h2 class="tituloAcciones">
+    ¿Qué querés hacer hoy?
+   </h2>
+   <section class="tarjetas">
+    <article class="tarjeta">
+     <div class="icono">
+      📋
+     </div>
+     <h3>
+      Turnos de pacientes
+     </h3>
+     <p>
+      Consultá tus próximos turnos y revisá los datos de cada paciente.
+     </p>
+     <button onclick="abrirSeccion('asistencia.html')" type="button">
+      Ver turnos
+     </button>
+    </article>
+    <article class="tarjeta">
+     <div class="icono">
+      🕐
+     </div>
+     <h3>
+      Horarios
+     </h3>
+     <p>
+      Accedé a la sección de horarios profesionales.
+     </p>
+     <button onclick="abrirSeccion('horarios.html')" type="button">
+      Ver horarios
+     </button>
+    </article>
+   </section>
+   <section class="recordatorio">
+    <div class="reloj">
+     🩺
+    </div>
+    <div>
+     <strong>
+      Atención de turnos
+     </strong>
+     <p>
+      Seleccioná un turno para consultar la información del paciente.
+     </p>
+    </div>
+   </section>
+  </main>
+  <script>
+   const personaGuardada = localStorage.getItem("persona");
+if (personaGuardada) {
+    const persona = JSON.parse(personaGuardada);
+    document.getElementById("tituloBienvenida").textContent =
+        `¡Bienvenido, ${persona.nombre}!`;
+}
+function abrirSeccion(pagina) {
+    window.location.href = pagina;
+}
+  </script>
+ </body>
+</html>

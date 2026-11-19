@@ -1,0 +1,126 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Seleccionar médico
+  </title>
+  <link href="../css/estilo2.css" rel="stylesheet"/>
+   <!-- Ayuda de uso: botón (?) y guía específica de esta pantalla. -->
+  <link href="../css/ayuda.css" rel="stylesheet"/>
+  <script src="../js/ayuda.js" data-ayuda-pagina="paciente/sacar_turno.html" defer></script>
+</head>
+ <body>
+  <main>
+   <h1>
+    Seleccioná una especialidad
+   </h1>
+   <!-- Aquí se cargarán las especialidades desde PostgreSQL -->
+   <div id="listaEspecialidades">
+    <p>
+     Cargando especialidades...
+    </p>
+   </div>
+   <!-- Aquí aparecerán los profesionales de la especialidad elegida -->
+   <div id="listaMedicos">
+   </div>
+   <p id="mensaje">
+   </p>
+  </main>
+  <script>
+   const API = "http://localhost:3001";
+// Cargar las especialidades desde la base de datos
+async function cargarEspecialidades() {
+    const contenedor = document.getElementById("listaEspecialidades");
+    const mensaje = document.getElementById("mensaje");
+    try {
+        const respuesta = await fetch(`${API}/especialidades`);
+        if (!respuesta.ok) {
+            throw new Error("No se pudieron cargar las especialidades");
+        }
+        const especialidades = await respuesta.json();
+        contenedor.innerHTML = "";
+        if (especialidades.length === 0) {
+            contenedor.innerHTML =
+                "<p>No hay especialidades registradas.</p>";
+            return;
+        }
+        especialidades.forEach(especialidad => {
+            const boton = document.createElement("button");
+            boton.textContent = especialidad.nombre;
+            boton.addEventListener("click", function () {
+                mostrarMedicos(especialidad.id_especialidad);
+            });
+            contenedor.appendChild(boton);
+        });
+    }
+    catch (error) {
+        console.error("Error al cargar especialidades:", error);
+        contenedor.innerHTML =
+            "<p>No se pudieron cargar las especialidades.</p>";
+    }
+}
+// Mostrar los profesionales de la especialidad seleccionada
+async function mostrarMedicos(idEspecialidad) {
+    const contenedor = document.getElementById("listaMedicos");
+    const mensaje = document.getElementById("mensaje");
+    contenedor.innerHTML = "<p>Cargando profesionales...</p>";
+    mensaje.textContent = "";
+    try {
+        const respuesta = await fetch(`${API}/profesional`);
+        if (!respuesta.ok) {
+            throw new Error("No se pudieron cargar los profesionales");
+        }
+        const profesionales = await respuesta.json();
+        // Filtrar los profesionales por especialidad
+        const filtrados = profesionales.filter(profesional => Number(profesional.id_especialidad) ===
+            Number(idEspecialidad));
+        contenedor.innerHTML = "";
+        if (filtrados.length === 0) {
+            contenedor.innerHTML =
+                "<p>No hay profesionales para esta especialidad.</p>";
+            return;
+        }
+        filtrados.forEach(profesional => {
+            const tarjeta = document.createElement("div");
+            tarjeta.className = "medico";
+            const titulo = document.createElement("h3");
+            const persona = profesional.Persona;
+            if (persona) {
+                titulo.textContent =
+                    `${persona.nombre} ${persona.apellido}`;
+            }
+            else {
+                titulo.textContent = "Nombre no disponible";
+            }
+            const boton = document.createElement("button");
+            boton.textContent = "Elegir médico";
+            // Guardar el identificador y nombre del profesional
+            boton.addEventListener("click", function () {
+                elegirMedico(profesional.id_profesional, titulo.textContent);
+            });
+            tarjeta.appendChild(titulo);
+            tarjeta.appendChild(boton);
+            contenedor.appendChild(tarjeta);
+        });
+    }
+    catch (error) {
+        console.error("Error al cargar profesionales:", error);
+        contenedor.innerHTML = "";
+        mensaje.textContent =
+            "No se pudieron cargar los profesionales.";
+    }
+}
+// Guardar el profesional seleccionado y pasar a los turnos
+function elegirMedico(idProfesional, nombre) {
+    localStorage.setItem("id_profesional", idProfesional);
+    localStorage.setItem("medicoSeleccionado", nombre);
+    window.location.href = "turnos.html";
+}
+// Cargar las especialidades al abrir la página
+cargarEspecialidades();
+  </script>
+ </body>
+</html>

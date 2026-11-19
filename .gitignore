@@ -1,0 +1,11 @@
+# ==========================================
+# SISTEMA DE TURNOS MÉDICOS
+# Archivos excluidos de GitHub
+# ==========================================
+
+# Dependencias de Node.js
+node_modules/
+**/node_modules/
+
+# Variables de entorno y contraseñas
+.env
