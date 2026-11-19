@@ -24,7 +24,7 @@ Instalar antes de comenzar:
 
 ## 3. Estructura de carpetas
 
-Proyecto T/
+Proyecto T1/
 ├── backend/
 │   ├── app.js                # Servidor Express y rutas HTTP
 │   ├── config.js             # Conexión de Sequelize a PostgreSQL
@@ -34,8 +34,8 @@ Proyecto T/
 │   └── package-lock.json     # Versiones de dependencias
 ├── frontend/
 │   ├── html/                 # Login, registro y navegación
-│   ├── alumno/               # Reserva, mis turnos, mis atenciones
-│   ├── profesor/             # Horarios, asistencia e historial
+│   ├── paciente/             # Reserva, mis turnos, mis atenciones
+│   ├── profesional/          # Horarios, asistencia e historial
 │   ├── admin/                # Pantallas administrativas
 │   ├── css/                  # Estilos visuales
 │   └── img/                  # Imágenes
@@ -120,16 +120,7 @@ El backend queda disponible en **`http://localhost:3001`**. Mantener esa termina
 
 > **El backend y el frontend se ejecutan por separado.** Live Server muestra HTML/CSS/JS; Node.js/Express atiende las peticiones `fetch()` del frontend y se comunica con PostgreSQL. **No basta con abrir el HTML si el backend o la base de datos están apagados.**
 
-## 8. Demostración recomendada
-
-1. Iniciar sesión como **profesional**: crear o consultar horarios y revisar la sección de asistencia.
-2. Iniciar sesión como **paciente**: seleccionar especialidad, profesional y fecha; reservar uno de los horarios libres.
-3. Volver al **profesional**: ver el turno, marcar llegada, iniciar/finalizar atención y registrar una consulta de prueba.
-4. Volver al **paciente**: consultar **Mis turnos** y **Mis atenciones**; verificar que la consulta aparezca en su historial.
-
-Preparar estas cuentas y registros **antes de exponer**; no asumir que una instalación nueva trae datos precargados.
-
-## 9. Solución de problemas frecuentes
+## 8. Solución de problemas frecuentes
 
 | Problema | Qué revisar |
 |---|---|
@@ -143,7 +134,7 @@ Preparar estas cuentas y registros **antes de exponer**; no asumir que una insta
 | `Unexpected token '<'` al leer JSON | Una petición recibió HTML en vez de JSON; revisar dirección, ruta y respuesta HTTP. |
 | Puerto ocupado | Verificar que no haya otro proceso usando el puerto 3001 o cerrar la ejecución anterior. |
 
-## 10. Comandos útiles
+## 9. Comandos útiles
 
 ```bash
 node --version      # Versión de Node.js
@@ -153,12 +144,3 @@ npm start           # Iniciar servidor
 npm run dev         # Iniciar con nodemon (si está disponible)
 npm audit           # Consultar advertencias de dependencias
 ```
-
-**No ejecutar `npm audit fix --force` sin revisar el impacto**: puede instalar versiones incompatibles, especialmente en Sequelize.
-
-## 11. Notas para la entrega
-
-- No incluir `node_modules/`, `.env` ni contraseñas en el repositorio o ZIP de entrega.
-- Sí incluir `package.json` y `package-lock.json`.
-- Entregar también un respaldo **sin datos personales reales** o instrucciones/datos ficticios para la demostración, si el docente lo solicita.
-- El proyecto sigue siendo una versión académica y necesita una revisión de seguridad antes de cualquier despliegue público o uso clínico.

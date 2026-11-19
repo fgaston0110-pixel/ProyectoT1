@@ -85,8 +85,12 @@
 }
 #detalle-atencion p {
     line-height: 1.55;
-    white-space: pre-wrap;
+    margin: 10px 0;
+    white-space: normal; /* Evita mostrar como espacios las sangrías del HTML */
     overflow-wrap: anywhere;
+}
+#detalle-atencion p span {
+    white-space: pre-line; /* Conserva saltos de línea reales en observaciones */
 }
 #cerrar-detalle {
     background: #475569;
